@@ -1,4 +1,11 @@
-walk(document.body);
+chrome.runtime.sendMessage({request: "Am I enabled?"}, 
+	function(response)
+	{
+		if(response.isenabled == "yes")
+		{
+			walk(document.body);
+		}
+	});
 
 function walk(node) 
 {
@@ -32,6 +39,7 @@ function handleText(textNode)
 	var v = textNode.nodeValue;
 
 	v = v.replace(/cybersecurity/g, "spider security");
+	v = v.replace(/Cybersecurity/g, "Spider security");
 	v = v.replace(/cyber/g, "spider");
 	v = v.replace(/Cyber/g, "Spider");
 	
